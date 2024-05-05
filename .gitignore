@@ -8,3 +8,4 @@ compose.yaml
 DockerFile
 README.Docker.md
 .dockerignore
+data/
