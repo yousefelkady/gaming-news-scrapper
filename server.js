@@ -3,12 +3,24 @@ const app = express();
 const bodyParser = require("body-parser");
 const ejsMate = require("ejs-mate");
 const path = require("path");
+const methodOverride = require("method-override");
+const gamespotRouter = require("./routes/gamespot");
+const scrappingRouter = require("./routes/scrape");
+const mongoose = require("mongoose");
+const slugify = require("slugify")
 const axios = require("axios");
 const cheerio = require("cheerio");
-const puppeteer = require("puppeteer");
-const methodOverride = require("method-override");
-const { CallbackRegistry } = require("puppeteer");
+const db = mongoose
+  .connect("mongodb://localhost:27017")
+  .then(() => {
+    console.log("Connected to Database");
+  })
+  .catch((error) => {
+    console.log(error, "Happened");
+  });
 //const mongoose = require("mongoose");
+app.use("/gamespot", gamespotRouter);
+app.use("/scrape", scrappingRouter);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,22 +31,24 @@ app.set("views", path.join(__dirname, "views"));
 require("dotenv").config();
 
 app.get("/", async (req, res, next) => {
-  // const html = await axios.get("https://www.gamespot.com/games/");
-  // const $ = cheerio.load(html);
-  // console.log($.html());
   const articles = [];
   axios
-    .get("https://www.gamespot.com/games/")
+    .get(`https://www.gamespot.com/news/?page=1`)
     .then((result) => {
-      console.log(result.data);
       const $ = cheerio.load(result.data);
       const page = $.html();
-      $(".card-item__title", page).each(function () {
-        const title = $(this).();
-        articles.push(title);
+      $(".card-item__content", page).each(function () {
+        const title = $(this).find("h4").text();
+        const link =
+          "https://www.gamespot.com" + $(".card-item__link").attr("href");
+        const slug = slugify(title, {
+          lower: true,
+          strict: true,
+        });
+        const result = { title, link, slug };
+        articles.push(result);
       });
 
-      console.log(articles);
       res.send(articles);
     })
     .catch((err) => {

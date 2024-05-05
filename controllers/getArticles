@@ -1,0 +1,29 @@
+const axios = require("axios");
+const cheerio = require("cheerio");
+const mongoose = require("mongoose");
+const News = require("../models/news");
+
+module.exports.getArticles = async (req, res, next) => {
+  console.log("Request Query : ", req.query);
+  const page = parseInt(req.query.page) || 2;
+  const limit = parseInt(req.query.limit) || 50;
+  const results = {};
+  const start = (page - 1) * limit;
+  const end = page * limit;
+
+  if (end < (await News.countDocuments())) {
+    results.next = {
+      page: page + 1,
+      limit: limit,
+    };
+  }
+  if (start > 0) {
+    results.previous = {
+      page: page - 1,
+      limit: limit,
+    };
+  }
+  const articles = await News.find().limit(limit).skip(start);
+  results.articles = articles;
+  res.send(results);
+};
