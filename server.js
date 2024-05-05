@@ -7,18 +7,11 @@ const methodOverride = require("method-override");
 const gamespotRouter = require("./routes/gamespot");
 const scrappingRouter = require("./routes/scrape");
 const mongoose = require("mongoose");
-const slugify = require("slugify")
+const slugify = require("slugify");
 const axios = require("axios");
 const cheerio = require("cheerio");
-const db = mongoose
-  .connect("mongodb://localhost:27017")
-  .then(() => {
-    console.log("Connected to Database");
-  })
-  .catch((error) => {
-    console.log(error, "Happened");
-  });
-//const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
 app.use("/gamespot", gamespotRouter);
 app.use("/scrape", scrappingRouter);
 app.use(express.static(path.join(__dirname, "public")));
@@ -28,7 +21,15 @@ app.use(bodyParser.json());
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-require("dotenv").config();
+const port = process.env.PORT;
+const db = mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("Connected to Database");
+  })
+  .catch((error) => {
+    console.log(error, "Happened");
+  });
 
 app.get("/", async (req, res, next) => {
   const articles = [];
@@ -54,8 +55,9 @@ app.get("/", async (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
+  // res.send("Hello World");
 });
 
-app.listen(3000, () => {
-  console.log(`Listening on Port 3000`);
+app.listen(port, () => {
+  console.log(`Listening on Port ${port}`);
 });
