@@ -11,7 +11,7 @@ const getNumOfPages = async function (url) {
       const pageNumber = $(this).find("a").text();
       paginationItems.push(pageNumber);
     });
-    console.log("list of pages:", paginationItems);
+    // console.log("list of pages:", paginationItems);
     const len = paginationItems.length - 1;
     return paginationItems[len - 1];
   } catch (err) {

@@ -10,7 +10,7 @@ function delay(ms) {
 
 module.exports.scrapeArticleDetails = async (req, res, next) => {
   try {
-    const articles = await News.find().limit(2);
+    const articles = await News.find();
     for (const article of articles) {
       const articlePage = await scrapePage(article.link);
       console.log("article page: ", articlePage);

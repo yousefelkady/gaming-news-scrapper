@@ -22,8 +22,9 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 const port = process.env.PORT;
+const db_URI = process.env.DB_URI;
 const db = mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(db_URI)
   .then(() => {
     console.log("Connected to Database");
   })
@@ -32,31 +33,9 @@ const db = mongoose
   });
 
 app.get("/", async (req, res, next) => {
-  const articles = [];
-  axios
-    .get(`https://www.gamespot.com/news/?page=1`)
-    .then((result) => {
-      const $ = cheerio.load(result.data);
-      const page = $.html();
-      $(".card-item__content", page).each(function () {
-        const title = $(this).find("h4").text();
-        const link =
-          "https://www.gamespot.com" + $(".card-item__link").attr("href");
-        const slug = slugify(title, {
-          lower: true,
-          strict: true,
-        });
-        const result = { title, link, slug };
-        articles.push(result);
-      });
-
-      res.send(articles);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  // res.send("Hello World");
+  res.send("Hello World")
 });
+
 
 app.listen(port, () => {
   console.log(`Listening on Port ${port}`);
