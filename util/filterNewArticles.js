@@ -1,7 +1,8 @@
 const slugify = require("slugify");
 const News = require("../models/news");
 const { strict } = require("assert");
-const { saveArticle } = require("./saveArticle");
+const scrapeArticle = require("./getArticleDetails");
+const { saveArticle, saveArticleDetails } = require("./saveArticle");
 
 const checkDocumentExists = async function (query) {
   const found = await News.exists(query);
@@ -24,9 +25,13 @@ module.exports.filterNewArticles = async (articles) => {
     }
   }
   console.log("Number of new Articles are:", newArticles.length);
-  newArticles.forEach((article) => {
+  newArticles.forEach(async (article) => {
     console.log("New Article:", article.title);
-    saveArticle(article);
+    const savedArticle = await saveArticle(article);
+    const articleDetails = await scrapeArticle(savedArticle);
+    const result = await saveArticleDetails(articleDetails);
+    if (result)
+      console.log(`Article Details added for the article ${result.title}`);
   });
   return newArticles;
 };

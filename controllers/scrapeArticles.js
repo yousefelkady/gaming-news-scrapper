@@ -11,7 +11,7 @@ module.exports.scrapeArticles = async (req, res, next) => {
   const lastPage = await getNumOfPages("https://www.gamespot.com/news/");
   console.log("Last Page is:", lastPage);
   let articles = [];
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < lastPage; i++) {
     await delay(i * 30000);
     const result = await getArticlesFromPage(i);
     articles = [...articles, ...result];
