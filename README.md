@@ -26,21 +26,21 @@ Roadmap for the progress of the project
 - ✔️ Scrape Article Details
 - ✔️ Upload Docker Image
 - ✔️ Deploy project on GCP (Google Cloud)
-- 🔜 Implement Search for Articles
-- 🔜 Scrape from more Websites:
+- ⌛ Implement Search for Articles
+- ⌛ Scrape from more Websites:
   - ✔️ Gamespot
-  - 🔜 IGN
-  - 🔜 Eurogamer
-  - 🔜 PC Gamer
-- 🔜 Implement UI for Articles List & Article Page
-- 🔜 Implement Users Feature
-  - 🔜 Add to Favourites
-  - 🔜 Push Notifications
-  - 🔜 Email Notifications
-  - 🔜 Subscription to Specific Websites 
-- 🔜 Create Dashboard for Articles Statistics
-- 🔜 Implement CI/CD pipline
-- 🔜 Integrate ML to get Article Summurization
+  - ⌛ IGN
+  - ⌛ Eurogamer
+  - ⌛ PC Gamer
+- ⌛ Implement UI for Articles List & Article Page
+- ⌛ Implement Users Feature
+  - ⌛ Add to Favourites
+  - ⌛ Push Notifications
+  - ⌛ Email Notifications
+  - ⌛ Subscription to Specific Websites 
+- ⌛ Create Dashboard for Articles Statistics
+- ⌛ Implement CI/CD pipline
+- ⌛ Integrate ML to get Article Summurization
 
   
 <h2>💻 Built with</h2>
