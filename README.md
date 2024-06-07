@@ -33,6 +33,7 @@ Roadmap for the progress of the project
   - ⌛ Eurogamer
   - ⌛ PC Gamer
 - ⌛ Implement UI for Articles List & Article Page
+- ⌛ Create Cronjob for updating articles
 - ⌛ Implement Users Feature
   - ⌛ Add to Favourites
   - ⌛ Push Notifications
