@@ -27,6 +27,7 @@ Roadmap for the progress of the project
 - ✔️ Upload Docker Image
 - ✔️ Deploy project on GCP (Google Cloud)
 - ✔️ Implement Search for Articles
+- ⌛ Implement Filter Articles
 - ⌛ Scrape from more Websites:
   - ✔️ Gamespot
   - ⌛ IGN
