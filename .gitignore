@@ -6,10 +6,6 @@ backend/blob-report/
 backend/playwright/.cache/
 backend/data/
 
-compose.yaml
-DockerFile
-README.Docker.md
-.dockerignore
 
 
 frontend/node_modules/
