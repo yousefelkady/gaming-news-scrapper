@@ -1,0 +1,9 @@
+.article-list{
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:100px;
+    border: 2px solid black;
+    margin: 50px 50px 0;
+}
