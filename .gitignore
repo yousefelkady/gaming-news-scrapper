@@ -6,7 +6,9 @@ backend/blob-report/
 backend/playwright/.cache/
 backend/data/
 
-
+compose.yaml
+DockerFile
+.dockerignore
 
 frontend/node_modules/
 frontend/.pnp
