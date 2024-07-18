@@ -9,11 +9,10 @@ const articleSchema = new mongoose.Schema({
   publishDate: { type: Date, default: Date.now },
   link: String,
   slug: String,
+  image: String,
+  source : String
 });
 
-articleSchema.virtual("source").get(function () {
-  return findSource(this.link);
-});
 
 const Article = new mongoose.model("Article", articleSchema);
 

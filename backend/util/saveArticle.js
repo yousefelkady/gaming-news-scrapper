@@ -7,6 +7,8 @@ module.exports.saveArticle = async (article) => {
       title: article.title,
       link: article.link,
       slug: article.slug,
+      image: article.image,
+      source : article.source,
     });
     const result = await articleDocument.save();
     return result;
@@ -25,6 +27,8 @@ module.exports.saveArticleDetails = async (article) => {
       body: article.body,
       publishDate: article.date,
       author: article.author,
+      image: article.image,
+      source: article.source
     });
     const result = await articleDocument.save();
     return result;

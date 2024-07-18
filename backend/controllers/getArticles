@@ -5,7 +5,7 @@ const News = require("../models/news");
 
 module.exports.getArticles = async (req, res, next) => {
   console.log("Request Query : ", req.query);
-  const page = parseInt(req.query.page) || 2;
+  const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 50;
   const results = {};
   const start = (page - 1) * limit;

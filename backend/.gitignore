@@ -9,4 +9,3 @@ DockerFile
 README.Docker.md
 .dockerignore
 data/
-.idea

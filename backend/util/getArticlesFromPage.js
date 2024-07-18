@@ -3,6 +3,7 @@ const cheerio = require("cheerio");
 const slugify = require("slugify");
 const News = require("../models/news");
 const { strict } = require("assert");
+const findSource = require("./findSource");
 
 const getArticlesFromPage = async function (page) {
   console.log(`Scrape articles function called for page number: ${page + 1}`);
@@ -13,8 +14,9 @@ const getArticlesFromPage = async function (page) {
     );
     const $ = cheerio.load(result.data);
     const pageHtml = $.html();
-    $(".card-item__content", pageHtml).each(function () {
+    $(".card-item", pageHtml).each(function () {
       const title = $(this).find("h4").text();
+      const image = $(this).find("img").attr("src");
       const link =
         "https://www.gamespot.com" +
         $(this).find(".card-item__link").attr("href");
@@ -22,7 +24,8 @@ const getArticlesFromPage = async function (page) {
         lower: true,
         strict: true,
       });
-      const article = { title, link, slug };
+      const source = findSource(link);
+      const article = { title, link, slug, image, source };
       articles.push(article);
     });
   } catch (err) {
