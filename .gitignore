@@ -4,10 +4,12 @@ backend/test-results/
 backend/playwright-report/
 backend/blob-report/
 backend/playwright/.cache/
-backend/compose.yaml
-backend/DockerFile
-backend/README.Docker.md
-backend/.dockerignore
+
+
+compose.yaml
+DockerFile
+README.Docker.md
+.dockerignore
 backend/data/
 
 frontend/node_modules
