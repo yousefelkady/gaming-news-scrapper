@@ -4,15 +4,15 @@ backend/test-results/
 backend/playwright-report/
 backend/blob-report/
 backend/playwright/.cache/
-
+backend/data/
 
 compose.yaml
 DockerFile
 README.Docker.md
 .dockerignore
-backend/data/
 
-frontend/node_modules
+
+frontend/node_modules/
 frontend/.pnp
 frontend/.pnp.js
 frontend/.yarn/install-state.gz
