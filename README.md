@@ -33,7 +33,7 @@ Roadmap for the progress of the project
   - ⌛ IGN
   - ⌛ Eurogamer
   - ⌛ PC Gamer
-- ⌛ Implement UI for Articles List & Article Page
+- ✔️ Implement UI for Articles List & Article Page
 - ⌛ Create Cronjob for updating articles
 - ⌛ Implement Users Feature
   - ⌛ Add to Favourites
